@@ -8,6 +8,38 @@
   ],
   "routes": [
     {
+      "src": "/api/products/(.*)",
+      "dest": "server.js"
+    },
+    {
+      "src": "/api/products",
+      "dest": "server.js"
+    },
+    {
+      "src": "/css/(.*)",
+      "dest": "/public/css/$1"
+    },
+    {
+      "src": "/js/(.*)",
+      "dest": "/public/js/$1"
+    },
+    {
+      "src": "/images/(.*)",
+      "dest": "/public/images/$1"
+    },
+    {
+      "src": "/products",
+      "dest": "server.js"
+    },
+    {
+      "src": "/add",
+      "dest": "server.js"
+    },
+    {
+      "src": "/edit/(.*)",
+      "dest": "server.js"
+    },
+    {
       "src": "/(.*)",
       "dest": "server.js"
     }

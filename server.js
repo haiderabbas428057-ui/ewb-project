@@ -57,18 +57,18 @@ app.get("/edit/:id", (req, res) => {
 // All product API routes start with /api/products
 app.use("/api/products", productRoutes);
 
+// Connect to database
+connectDB();
+
 // ─── START SERVER ────────────────────────────
 const PORT = process.env.PORT || 5000;
 
-// For local development
+// This is needed for local development. Vercel ignores this and uses the exported app.
 if (process.env.NODE_ENV !== 'production') {
-  connectDB().then(() => {
-    app.listen(PORT, () => {
-      console.log(`🚀 Server running on http://localhost:${PORT}`);
-    });
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running on http://localhost:${PORT}`);
   });
 }
 
-// Export for Vercel
-connectDB(); // Ensure DB is connected in production too
+// Export the app for Vercel
 module.exports = app;
