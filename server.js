@@ -60,9 +60,15 @@ app.use("/api/products", productRoutes);
 // ─── START SERVER ────────────────────────────
 const PORT = process.env.PORT || 5000;
 
-// Connect to database, then start server
-connectDB().then(() => {
-  app.listen(PORT, () => {
-    console.log(`🚀 Server running on http://localhost:${PORT}`);
+// For local development
+if (process.env.NODE_ENV !== 'production') {
+  connectDB().then(() => {
+    app.listen(PORT, () => {
+      console.log(`🚀 Server running on http://localhost:${PORT}`);
+    });
   });
-});
+}
+
+// Export for Vercel
+connectDB(); // Ensure DB is connected in production too
+module.exports = app;
